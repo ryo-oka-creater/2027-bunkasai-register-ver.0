@@ -506,6 +506,7 @@ id="saveStaffBtn">
 CAL: {
 id:'CAL',
 name:'ナタデココドリンク（カルピス）',
+booth:'ナタデココドリンク',
 displayName:'<span style="font-size:27px;">🥛 カルピス</span><br>ナタデココドリンク',
 btnColor:'#dbeafe',
 price:110,
@@ -514,6 +515,7 @@ small:true
 PEA: {
 id:'PEA',
 name:'ナタデココドリンク（ピーチ）',
+booth:'ナタデココドリンク',
 displayName:'<span style="font-size:27px;">🍑 ピーチ</span><br>ナタデココドリンク',
 btnColor:'#fce7f3',
 price:110,
@@ -522,6 +524,7 @@ small:true
 DUB: {
 id:'DUB',
 name:'ドバイチョコ',
+booth:'ドバイチョコ',
 displayName:'<span style="font-size:27px;">🍫 ドバイチョコ</span>',
 btnColor:'#fef3c7',
 price:620,
@@ -530,6 +533,7 @@ small:true
 TAK: {
 id:'TAK',
 name:'たこ焼き',
+booth:'たこ焼き',
 displayName:'<span style="font-size:27px;">🐙 たこ焼き</span>',
 btnColor:'#fed7aa',
 price:150,
@@ -1029,7 +1033,7 @@ saleDay: localStorage.getItem('saleDay') || '土曜',
 shiftType: localStorage.getItem('shiftType') || '当日券販売',
 startTime: localStorage.getItem('startTime') || '',
 ts:new Date().toISOString(),staff:localStorage.getItem('staffName') || '未設定',
-        lines:cart.map(r=>({id:r.id,name:r.name,price:r.price,qty:r.qty,subtotal:r.price*r.qty})),
+        lines:cart.map(r=>({id:r.id,name:r.name,booth:r.booth,price:r.price,qty:r.qty,subtotal:r.price*r.qty})),
         total,paid,change:paid-total
       });
 
@@ -1094,6 +1098,7 @@ detailData.push({
 販売日: j.saleDay,
 担当者: j.staff,
 販売形式: j.shiftType,
+商品ブース: r.booth,
 シフト開始: j.startTime,
 会計日時: dateTime,
 番号: receiptNo,
