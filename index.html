@@ -331,6 +331,15 @@ padding:12px 16px;
 button{
 cursor:pointer;
 }
+.modalCard input,
+.modalCard select{
+width:100%;
+padding:10px 12px;
+font-size:18px;
+border:1px solid #ccc;
+border-radius:10px;
+box-sizing:border-box;
+}
   </style>
 </head>
 <body>
@@ -648,7 +657,7 @@ staffModal.classList.add('show');
 function updateStaffDisplay(){
 const staff = localStorage.getItem('staffName') || '未設定';
 const saleDay = localStorage.getItem('saleDay') || '';
-const shiftType = localStorage.getItem('shiftType') || '';
+const shiftType = '当日券販売';
 const startTime = localStorage.getItem('startTime') || '';
 if(staff === '未設定'){
 staffNameEl.textContent = '未設定';
@@ -1030,14 +1039,14 @@ String(counter).padStart(4,'0');
 journal.push({
 receiptNo: crypto.randomUUID(),
 displayNo,
-saleDay: localStorage.getItem('saleDay') || '土曜',
-shiftType: localStorage.getItem('shiftType') || '当日券販売',
-startTime: localStorage.getItem('startTime') || '',
-ts:new Date().toISOString(),staff:localStorage.getItem('staffName') || '未設定',
+saleDay: localStorage.getItem('saleDay'),
+shiftType: localStorage.getItem('shiftType'),
+startTime: localStorage.getItem('startTime'),
+ts:new Date().toISOString(),
+staff:localStorage.getItem('staffName'),
         lines:cart.map(r=>({id:r.id,name:r.name,booth:r.booth,price:r.price,qty:r.qty,subtotal:r.price*r.qty})),
         total,paid,change:paid-total
       });
-
 
 const latest = journal[journal.length - 1];
 fetch("https://script.google.com/macros/s/AKfycbwICSkJnx_kcj4JNKaypAXo9ljYxq9T962yetP582U0UbMmP4wjgvDCTTQKOu_JBK-y0A/exec",
@@ -1072,6 +1081,8 @@ alert(
 );
 return;
 }
+
+if(!checkSalesConfig()) return;
 
 const journal=JSON.parse(localStorage.getItem('journal')||'[]');
       if(journal.length===0) return alert('データがありません');
