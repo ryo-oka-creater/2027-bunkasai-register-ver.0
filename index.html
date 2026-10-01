@@ -716,10 +716,6 @@ localStorage.setItem(
 modalSaleDay.value
 );
 localStorage.setItem(
-'shiftType',
-'当日券販売'
-);
-localStorage.setItem(
 'startTime',
 modalStartTime.value
 );
@@ -1040,7 +1036,7 @@ journal.push({
 receiptNo: crypto.randomUUID(),
 displayNo,
 saleDay: localStorage.getItem('saleDay'),
-shiftType: localStorage.getItem('shiftType'),
+shiftType: '当日券販売',
 startTime: localStorage.getItem('startTime'),
 ts:new Date().toISOString(),
 staff:localStorage.getItem('staffName'),
@@ -1223,7 +1219,6 @@ localStorage.removeItem('journal');
 
 localStorage.removeItem('staffName');
 localStorage.removeItem('saleDay');
-localStorage.removeItem('shiftType');
 localStorage.removeItem('startTime');
 
 updateStaffDisplay();
